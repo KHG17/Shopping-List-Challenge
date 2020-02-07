@@ -1,26 +1,23 @@
 const list = $('ul');
 
 function addListItem() {
-    $('#submitButton').on('click', event => {
-        event.preventDefault();
-        let listItemName = $('#shopping-list-entry').val();
-        if (listItemName) {
-            let newListItem = `
-            <li>
-            <span class="shopping-item">${listItemName}</span>
-            <div class="shopping-item-controls">
-              <button class="shopping-item-toggle">
-                <span class="button-label">check</span>
-              </button>
-              <button class="shopping-item-delete">
-                <span class="button-label">delete</span>
-              </button>
-            </div>
-            </li>`;
-            $('.shopping-list').prepend(newListItem);
-            $('#shopping-list-entry').val('');
-        }
-    });
+   $('#js-shopping-list-form').submit(function(event) {
+    event.preventDefault();
+    const listItem = $('#shopping-list-entry').val();
+    $('#shopping-list-entry').val('');
+    $('.shopping-list').append(
+      `<li>
+        <span class="shopping-item">${listItem}</span>
+        <div class="shopping-item-controls">
+          <button class="shopping-item-toggle">
+            <span class="button-label">check</span>
+          </button>
+          <button class="shopping-item-delete">
+            <span class="button-label">delete</span>
+          </button>
+        </div>
+      </li>`);
+  });
 }
 
 function deleteListItem() {
